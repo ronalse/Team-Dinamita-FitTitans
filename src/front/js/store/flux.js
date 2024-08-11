@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			dieta: [],
 			videos: [],
 			currentUser: {},
-            messages: [],
+			messages: [],
 
 		},
 		actions: {
@@ -181,7 +181,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					if (response.ok) {
 						const data = await response.json();
-						
+
 						return setStore({ usuarioUnico: data })
 					}
 				} catch (error) {
@@ -192,7 +192,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			EditarFotos: async (id, secureUrl, token) => { // solicita token para que nadie pueda
 				try {
-					
+
 					const response = await fetch(`${process.env.BACKEND_URL}/listaentrenadores/${id}`, {
 						method: "PUT",
 						headers: {
@@ -257,7 +257,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getMessage: async () => {
 				try {
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+					const resp = await fetch(process.env.BACKEND_URL + "api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
@@ -346,7 +346,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							//'Authorization': `Bearer ${token}`
 						},
 						body: JSON.stringify({ password: password, user_uuid: user_uuid })
-						
+
 					});
 
 					if (!response.ok) {
@@ -493,7 +493,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return { success: false, error: "Error de red al eliminar la dieta" };
 				}
 			},
-			
+
 
 
 			// RUTINAver, crear, modificar, eliminar esto es del entrenador
@@ -581,39 +581,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			
-			Videos :async (id, secureUrl, token, titulo) => { // solicita token para que nadie pueda
-					try {
-						const response = await fetch(`${process.env.BACKEND_URL}/agregarVideo/${id}`, {
-							method: 'POST',
-							headers: {
-								"Content-Type": "application/json",
-								Authorization: `Bearer ${token}`,
-							},
-							body: JSON.stringify({ url: secureUrl, titulo : titulo})
-						});
-						const data = await response.json();
-						console.log("Respuesta del servidor:");
-					} catch (error) {
-						console.error("Error updating user data:", error);
-					}
-				},
 
-			ObtenerVideos :async (token) => { // solicita token para que nadie pueda
-					try {
-						const response = await fetch(`${process.env.BACKEND_URL}/listaentrenadores/videos`, {
-							method: 'GET',
-							headers: {
-								"Content-Type": "application/json",
-								Authorization: `Bearer ${token}`,
-							},	
-						});
-						const data = await response.json();
-						setStore({videos : data.entrenadores})
-					} catch (error) {
-						console.error("Error updating user data:", error);
-					}
-				},
+			Videos: async (id, secureUrl, token, titulo) => { // solicita token para que nadie pueda
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/agregarVideo/${id}`, {
+						method: 'POST',
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${token}`,
+						},
+						body: JSON.stringify({ url: secureUrl, titulo: titulo })
+					});
+					const data = await response.json();
+					console.log("Respuesta del servidor:");
+				} catch (error) {
+					console.error("Error updating user data:", error);
+				}
+			},
+
+			ObtenerVideos: async (token) => { // solicita token para que nadie pueda
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/listaentrenadores/videos`, {
+						method: 'GET',
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${token}`,
+						},
+					});
+					const data = await response.json();
+					setStore({ videos: data.entrenadores })
+				} catch (error) {
+					console.error("Error updating user data:", error);
+				}
+			},
 
 		}
 	};

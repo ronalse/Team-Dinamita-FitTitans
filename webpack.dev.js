@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 
 const port = 3000;
@@ -19,6 +20,9 @@ if(process.env.CODESPACE_NAME){
 }
 
 module.exports = merge(common, {
+    plugins: [
+    new BundleAnalyzerPlugin()
+    ],
     mode: 'development',
     devtool: 'cheap-module-source-map',
     devServer: {

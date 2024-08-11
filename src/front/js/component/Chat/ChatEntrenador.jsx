@@ -4,12 +4,12 @@ import "./chat.css";
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-const socket = io(process.env.BACKEND_URL, {
+/*const socket = io(process.env.BACKEND_URL, {
     transports: ['websocket'], // Forzar la conexión a WebSocket
     query: {
         user_id: localStorage.getItem('user_id')
     }
-});
+});*/
 
 export const ChatEntrenador = () => {
     const [remitenteId, setRemitenteId] = useState(null);
@@ -51,11 +51,11 @@ export const ChatEntrenador = () => {
                 console.error('Error from server:', error);
             });
 
-           /* return () => {
+           return () => {
                 socket.off('message');
                 socket.off('error');
                 socket.disconnect();
-            };*/
+            };
         }
 
     }, [remitenteId, destinatarioId]);

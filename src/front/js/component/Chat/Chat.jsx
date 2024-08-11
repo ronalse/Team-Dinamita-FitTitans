@@ -3,12 +3,12 @@ import io from 'socket.io-client';
 import "./chat.css";
 import { motion } from 'framer-motion';
 
-const socket = io(process.env.BACKEND_URL, {
+/*const socket = io(process.env.BACKEND_URL, {
     transports: ['websocket'], // Forzar la conexión a WebSocket
     query: {
         user_id: localStorage.getItem('user_id')
     }
-});
+});*/
 
 export const Chat = () => {
     const [remitenteId, setRemitenteId] = useState(null);
@@ -71,11 +71,11 @@ export const Chat = () => {
         });
 
         // Función de limpieza al desmontar el componente
-        /* return () => {
+        return () => {
             socket.off('message');
             socket.off('error');
             socket.disconnect();
-        }; */
+        }; 
     }, []); // Dependencia vacía para ejecutar solo una vez al montar el componente
 
     const sendMessage = (e) => {
